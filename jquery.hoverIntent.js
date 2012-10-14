@@ -53,7 +53,10 @@
 		var compare = function(ev,ob) {
 			ob.hoverIntent_t = clearTimeout(ob.hoverIntent_t);
 			// compare mouse positions to see if they've crossed the threshold
-			if ( ( Math.abs(pX-cX) + Math.abs(pY-cY) ) < cfg.sensitivity ) {
+                     // regarding the ( cX + cY ) > 0  check: 
+                     //   clicking in chrome on a selectbox triggered a track event with 0x0
+                     //   it's very unlikely that a human would trigger a 0x0 event
+                     if ( ( cX + cY ) > 0 && ( Math.abs(pX-cX) + Math.abs(pY-cY) ) < cfg.sensitivity ) {
 				$(ob).unbind("mousemove",track);
 				// set hoverIntent state to true (so mouseOut can be called)
 				ob.hoverIntent_s = 1;
