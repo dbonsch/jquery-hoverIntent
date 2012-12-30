@@ -124,10 +124,10 @@
 
 		// bind the function to the two event listeners
 		if (cfg.selector === null) {
-			return this.bind( 'mouseenter', handleHover ).bind( 'mouseleave', handleHover );
+			return this.bind( 'mouseenter mouseover', handleHover ).bind( 'mouseleave mouseout', handleHover );
 		}
 		else {
-			return this.on( 'mouseenter mouseleave', cfg.selector, handleHover );
+			return this.on( 'mouseenter mouseleave mouseover mouseout', cfg.selector, handleHover );
 		}
 	};
 	
